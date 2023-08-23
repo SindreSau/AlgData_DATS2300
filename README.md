@@ -1,4 +1,4 @@
 # Algorithms & Datastructures
 #### This repo is a collection of all code regarding the subject Algorithms and Datastructures
 
-<img alt="giphy" src="https://media1.giphy.com/media/sSGQueelufkdr7f45Z/giphy.gif?cid=ecf05e47g2ppe00t4a9fotexl7lqgokdlivfppfcgim3zn78&ep=v1_gifs_related&rid=giphy.gif&ct=g"></img>
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW50dnFnNGl2OXZnbDB0aXNlODN1MWV5ZHl5b2JoMzE2ZzBxMDQ0dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FuSJ5C7SSHlZCxjC6q/giphy-downsized.gif" width="240" height="240" />
