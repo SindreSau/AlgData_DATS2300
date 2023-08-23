@@ -1,7 +1,16 @@
 package UnitTesting;
 
-import junit.framework.TestCase;
+import org.junit.jupiter.api.Test;
 
-public class SimpleCalculatorTest extends TestCase {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+public class SimpleCalculatorTest {
+
+    @Test
+    void twoPlusTwoEqualsFour() {
+        var calc = new SimpleCalculator();
+        assertEquals(4, calc.addNums(2, 2));
+
+    }
 }
+
