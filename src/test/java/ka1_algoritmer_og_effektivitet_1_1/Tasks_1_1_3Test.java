@@ -1,4 +1,4 @@
-package Algoritmer_og_effektivitet_1_1;
+package ka1_algoritmer_og_effektivitet_1_1;
 
 import org.junit.jupiter.api.Test;
 
