@@ -141,33 +141,20 @@ public class Oblig1 {
             return;
 
         // Partisjonering: oddetall | partall
-        int i = 0;
-        int j = a.length - 1;
-        int oddeTall = 0;
-        while (i < j) {
-            while (a[i] % 2 != 0 && i < j) {
-                i++;
-                oddeTall++;
-            }
-            while (a[j] % 2 == 0 && i < j) {
+        int i = 0, j = a.length - 1;
+        while (i <= j) {
+            if (a[i] % 2 == 0) { // Partall, vi bytter med høyre posisjon
+                bytt(a, i, j);
                 j--;
             }
-            bytt(a, i, j);
-        }
-
-        // Sortering av hver partisjon med bubblesort
-        bubbleSort(a, 0, oddeTall);
-        bubbleSort(a, oddeTall, a.length);
-    }
-
-    // Mulig denne burde forbedres så indre for-loop krymper for hver i++
-    private static void bubbleSort(int[] a, int fraIndeks, int tilIndeks) {
-        for (int i = fraIndeks; i < tilIndeks; i++) {
-            for (int j = fraIndeks; j < tilIndeks - 1; j++) {
-                if (a[j] > a[j + 1])
-                    bytt(a, j, j + 1);
+            else { // Oddetall, inkrementer i
+                i++;
             }
         }
+
+        // J er nå posisjon til siste oddeTall
+        Arrays.sort(a, 0, j + 1);       // Sorter oddetall
+        Arrays.sort(a, j + 1, a.length); // Sorter partall
     }
 
     // Oppgave 5
