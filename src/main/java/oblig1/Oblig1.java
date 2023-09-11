@@ -3,6 +3,8 @@ package oblig1;
 import utils.Randperm;
 import java.util.*;
 
+import static java.util.Objects.isNull;
+
 public class Oblig1 {
     private Oblig1() {}
 
@@ -28,20 +30,19 @@ public class Oblig1 {
         System.out.println(Arrays.toString(a));*/
 
         // For testing av oppg 5 og 6
-        char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        /*rotasjon(a);*/
-        /*rotasjon(a, 3);*/
+        /*char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+        *//*rotasjon(a);*//*
+        *//*rotasjon(a, 3);*//*
         rotasjon(a,  -2);
-        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(a));*/
 
+        // For testing av oppg 7
+        String s = "AB";
+        String t = "DE";
+        /*System.out.println(flett(s, t));*/
+        String f = null;
+        System.out.println(flett(s, f, t));
     }
-
-    // Oppgave 7
-    public static String flett(String s, String t) {
-
-    }
-
-    public static String flett(String... s) {throw new UnsupportedOperationException();}
 
     /*Bare for testing*/
     private static void printSnitt(int size, int weigth) {
@@ -216,7 +217,56 @@ public class Oblig1 {
         System.arraycopy(b, 0, a, 0, k);
     }
 
-    // !LIM INN
+    // Oppgave 7
+    public static String flett(String s, String t) {
+        // Hvis s eller t er null, returner ""
+        if (isNull(s) || isNull(t))
+            return "";
+
+        StringBuilder sb = new StringBuilder();
+
+        int i = 0, j = 0;
+        // Legg til elementer fra s og t til enten i eller j er lik lengden på en av strengene
+        while (i < s.length() && j < t.length()) {
+            sb.append(s.charAt(i++));
+            sb.append(t.charAt(j++));
+        }
+
+        // Legg til resterende elementer
+        while (i < s.length()) {
+            sb.append(s.charAt(i++));
+        }
+
+        // Legg til resterende elementer
+        while (j < t.length()) {
+            sb.append(t.charAt(j++));
+        }
+
+        return sb.toString();
+    }
+
+    public static String flett(String... s) {
+        // Hvis s er null eller s[i] er null for en i, returner ""
+        if (isNull(s))
+            return "";
+        for (String str : s) {
+            if (isNull(str))
+                return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        int j = 0;
+        while (j < s.length) {
+            for (String str : s) {
+                if (j < str.length())
+                    sb.append(str.charAt(j));
+            }
+            j++;
+        }
+
+        return sb.toString();
+    }
 
 
     // Oppgave 8
