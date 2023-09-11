@@ -1,10 +1,7 @@
 package oblig1;
 
 import utils.Randperm;
-
 import java.util.*;
-
-import static java.lang.Math.round;
 
 public class Oblig1 {
     private Oblig1() {}
@@ -25,12 +22,31 @@ public class Oblig1 {
         System.out.println(antallUlikeUsortert(b));*/
 
         // For kjøring og testing av oppg 4
-        int[] a = {6, 10, 9, 4, 1, 3, 8, 5, 2, 7};
+        /*int[] a = {6, 10, 9, 4, 1, 3, 8, 5, 2, 7};
         System.out.println(Arrays.toString(a));
         delsortering(a);
+        System.out.println(Arrays.toString(a));*/
+
+        // For testing av oppg 5
+        char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+        rotasjon(a);
         System.out.println(Arrays.toString(a));
+
     }
 
+    // Oppgave 5
+    public static void rotasjon(char[] a) {
+
+        // Lagre siste element
+        char siste = a[a.length - 1];
+
+
+        for (int i = a.length - 2; i >= 0; i--) {
+            a[i + 1] = a[i];
+        }
+
+        a[0] = siste;
+    }
 
     /*Bare for testing*/
     private static void printSnitt(int size, int weigth) {
@@ -157,8 +173,7 @@ public class Oblig1 {
         Arrays.sort(a, j + 1, a.length); // Sorter partall
     }
 
-    // Oppgave 5
-    public static void rotasjon(char[] a) {throw new UnsupportedOperationException();}
+    // LIM INN IGJEN HER
 
     // Oppgave 6
     public static void rotasjon(char[] a, int k) {throw new UnsupportedOperationException();}
