@@ -27,26 +27,21 @@ public class Oblig1 {
         delsortering(a);
         System.out.println(Arrays.toString(a));*/
 
-        // For testing av oppg 5
+        // For testing av oppg 5 og 6
         char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        rotasjon(a);
+        /*rotasjon(a);*/
+        /*rotasjon(a, 3);*/
+        rotasjon(a,  -2);
         System.out.println(Arrays.toString(a));
 
     }
 
-    // Oppgave 5
-    public static void rotasjon(char[] a) {
+    // Oppgave 7
+    public static String flett(String s, String t) {
 
-        // Lagre siste element
-        char siste = a[a.length - 1];
-
-
-        for (int i = a.length - 2; i >= 0; i--) {
-            a[i + 1] = a[i];
-        }
-
-        a[0] = siste;
     }
+
+    public static String flett(String... s) {throw new UnsupportedOperationException();}
 
     /*Bare for testing*/
     private static void printSnitt(int size, int weigth) {
@@ -173,15 +168,56 @@ public class Oblig1 {
         Arrays.sort(a, j + 1, a.length); // Sorter partall
     }
 
-    // LIM INN IGJEN HER
+    // Oppgave 5
+    public static void rotasjon(char[] a) {
+
+        // Lagre siste element
+        char siste = a[a.length - 1];
+
+
+        for (int i = a.length - 2; i >= 0; i--) {
+            a[i + 1] = a[i];
+        }
+
+        a[0] = siste;
+    }
 
     // Oppgave 6
-    public static void rotasjon(char[] a, int k) {throw new UnsupportedOperationException();}
+    public static void rotasjon(char[] a, int k) {
+        if (a.length < 1)
+            return;
 
-    // Oppgave 7
-    public static String flett(String s, String t) {throw new UnsupportedOperationException();}
+        /*
+        Hvis k er negativt, vil vi rotere motsatt vei.
+        Vi kan da se på det som at vi roterer k elementer til høyre.
+        Eks: k = -2 & a.length = 5 => k = 3
+          1. Lag midlertidig array med de 3 siste elementene
+          2. Flytt de to første elementene til høyre
+          3. Legg til elementene fra midlertidig array
 
-    public static String flett(String... s) {throw new UnsupportedOperationException();}
+        Hvis k er større enn lengden på arrayet, vil vi rotere k % a.length ganger.
+        */
+        k %= a.length;
+        if (k < 0)
+            k = k += a.length; // Gjør k positivt
+
+        System.out.println(k);
+
+        char[] b = Arrays.copyOfRange(a, a.length - k, a.length);
+
+        System.out.println(Arrays.toString(b));
+
+        // Flytt elementer til høyre
+        for (int i = a.length - 1; i >= k; i--) {
+            a[i] = a[i - k];
+        }
+
+        // Legg til elementer fra b
+        System.arraycopy(b, 0, a, 0, k);
+    }
+
+    // !LIM INN
+
 
     // Oppgave 8
     public static int[] indeksSortering(int[] a) {throw new UnsupportedOperationException();}
