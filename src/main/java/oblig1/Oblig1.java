@@ -37,11 +37,21 @@ public class Oblig1 {
         System.out.println(Arrays.toString(a));*/
 
         // For testing av oppg 7
-        String s = "AB";
+        /*String s = "AB";
         String t = "DE";
-        /*System.out.println(flett(s, t));*/
+        *//*System.out.println(flett(s, t));*//*
         String f = null;
-        System.out.println(flett(s, f, t));
+        System.out.println(flett(s, f, t));*/
+
+        // For testing av oppg 8 og 9
+        /*int[] a = {6, 10, -5, 11, 7, 12, 3, 9, 8, 5};
+        *//*System.out.println(Arrays.toString(indeksSortering(a)));*//*
+        System.out.println(Arrays.toString(tredjeMin(a)));*/
+
+        // For testing av oppg 10
+        /*String a = "ABBA";
+        String b = "BAAB";
+        System.out.println(inneholdt(a, b));*/
     }
 
     /*Bare for testing*/
@@ -54,6 +64,7 @@ public class Oblig1 {
         System.out.printf("Snittet er: %.1f", snitt);
     }
 
+    // Oppgave 1
     public static int maks(int[] a) {
         if (a.length < 1)
             throw new NoSuchElementException("Arrayet kan ikke være tomt!");
@@ -268,13 +279,95 @@ public class Oblig1 {
         return sb.toString();
     }
 
-
     // Oppgave 8
-    public static int[] indeksSortering(int[] a) {throw new UnsupportedOperationException();}
+    public static int[] indeksSortering(int[] a) {
+        int[] b = new int[a.length];
+
+        // Fyll b med indekser
+        for (int i = 0; i < b.length; i++) {
+            b[i] = i;
+        }
+
+        // Sorter b basert på verdiene i a
+        for (int i = 1; i < a.length; i++) {
+            int j = i;
+            while (j > 0 && a[b[j - 1]] > a[b[j]]) {
+                bytt(b, j, j - 1);
+                j--;
+            }
+        }
+
+        return b;
+    }
 
     // Oppgave 9
-    public static int[] tredjeMin(int[] a) {throw new UnsupportedOperationException();}
+    public static int[] tredjeMin(int[] a) {
+        if (a.length < 3)
+            throw new NoSuchElementException("Arrayet må ha minst 3 elementer");
+
+        int[] b = {0, 1, 2};
+
+        // Sorterer de tre første indeksene
+        if (a[b[1]] < a[b[0]]) bytt(b, 0, 1);
+        if (a[b[2]] < a[b[1]]) bytt(b, 1, 2);
+        if (a[b[1]] < a[b[0]]) bytt(b, 0, 1);
+
+        // Sjekker resten av arrayet
+        for (int i = 3; i < a.length; i++) {
+            if (a[i] < a[b[2]]) {
+                if (a[i] < a[b[1]]) {
+                    if (a[i] < a[b[0]]) {
+                        b[2] = b[1];
+                        b[1] = b[0];
+                        b[0] = i;
+                    }
+                    else {
+                        b[2] = b[1];
+                        b[1] = i;
+                    }
+                }
+                else {
+                    b[2] = i;
+                }
+            }
+        }
+
+        return b;
+    }
 
     // Oppgave 10
-    public static boolean inneholdt(String a, String b) {throw new UnsupportedOperationException();}
+    public static boolean inneholdt(String a, String b) {
+        Map<String, Integer> bokstavTelling = new HashMap<>();
+
+        // Legg til bokstaver fra a i bokstavTelling
+        for (int i = 0; i < a.length(); i++) {
+            String bokstav = String.valueOf(a.charAt(i));
+            // Hvis bokstaven finnes i bokstavTelling, inkrementer antall
+            if (bokstavTelling.containsKey(bokstav)) {
+                bokstavTelling.put(bokstav, bokstavTelling.get(bokstav) + 1);
+            }
+            // Hvis ikke, legg til bokstaven med antall 1
+            else {
+                bokstavTelling.put(bokstav, 1);
+            }
+        }
+
+        // Fjern bokstaver fra bokstavTelling
+        for (int i = 0; i < b.length(); i++) {
+            String bokstav = String.valueOf(b.charAt(i));
+            if (bokstavTelling.containsKey(bokstav)) {
+                int antall = bokstavTelling.get(bokstav);
+                // Hvis antall er 1, fjern bokstaven fra bokstavTelling
+                if (antall == 1) {
+                    bokstavTelling.remove(bokstav);
+                }
+                // Hvis ikke, dekrementer antall
+                else {
+                    bokstavTelling.put(bokstav, antall - 1);
+                }
+            }
+        }
+
+        return bokstavTelling.isEmpty();
+    }
 }
