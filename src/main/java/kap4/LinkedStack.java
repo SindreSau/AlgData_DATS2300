@@ -34,15 +34,27 @@ public class LinkedStack<T> {
         size--;
     }
 
+    public void clear() {
+        int length = size;
+        for (int i = 0; i < length; i++) {
+            head = head.next;
+            size--;
+        }
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        Node<T> current = head;
-        while (current != null) {
-            sb.append(current.value + " ");
-            current = current.next;
+        if(size > 0) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Stack: ");
+            Node<T> current = head;
+            while (current != null) {
+                sb.append(current.value + " ");
+                current = current.next;
+            }
+            return sb.toString();
         }
-        return sb.toString();
+        return "Stack empty";
     }
 
     public int getSize() {
@@ -59,6 +71,10 @@ class run {
         s.add(9);
         System.out.println(s.peek());
         s.pop();
+        System.out.println(s);
+        System.out.println(s.getSize());
+
+        s.clear();
         System.out.println(s);
         System.out.println(s.getSize());
     }
