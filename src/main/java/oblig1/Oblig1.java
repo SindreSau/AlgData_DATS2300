@@ -13,9 +13,8 @@ public class Oblig1 {
         /*int[] a = {3, 1, 2, 4};
         int[] rand = Randperm.getRandomArray(0, 0, 10);
         //System.out.println(Arrays.toString(rand));
-
         System.out.println(ombyttinger(a));
-        printSnitt(10, 10000);*/
+        printSnitt(1000, 10000);*/
 
         //For kjøring og testing av oppg 2 og 3
         /*int[] a = {3, 3, 4, 5, 5, 6, 7, 7, 7, 8};
@@ -30,11 +29,11 @@ public class Oblig1 {
         System.out.println(Arrays.toString(a));*/
 
         // For testing av oppg 5 og 6
-        /*char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
-        *//*rotasjon(a);*//*
-        *//*rotasjon(a, 3);*//*
-        rotasjon(a,  -2);
-        System.out.println(Arrays.toString(a));*/
+        char[] a = {'A', 'B', 'C', 'D'};
+        /*rotasjon(a);
+        rotasjon(a, 3);*/
+        rotasjon(a,  -3);
+        System.out.println(Arrays.toString(a));
 
         // For testing av oppg 7
         /*String s = "AB";
@@ -196,35 +195,24 @@ public class Oblig1 {
 
     // Oppgave 6
     public static void rotasjon(char[] a, int k) {
+        // Returner om arrayet er tomt
         if (a.length < 1)
             return;
 
-        /*
-        Hvis k er negativt, vil vi rotere motsatt vei.
-        Vi kan da se på det som at vi roterer k elementer til høyre.
-        Eks: k = -2 & a.length = 5 => k = 3
-          1. Lag midlertidig array med de 3 siste elementene
-          2. Flytt de to første elementene til høyre
-          3. Legg til elementene fra midlertidig array
-
-        Hvis k er større enn lengden på arrayet, vil vi rotere k % a.length ganger.
-        */
+        // Hvis k er positiv og k > a.length;
         k %= a.length;
         if (k < 0)
-            k = k += a.length; // Gjør k positivt
+            k += a.length; // Dersom k < 0 vil vi gjøre k til en verdi som tillater oss å flytte til høyre
 
-        System.out.println(k);
-
+        // Array som midlertidig lagrer verdier vi kommer til å overskrive
         char[] b = Arrays.copyOfRange(a, a.length - k, a.length);
-
-        System.out.println(Arrays.toString(b));
 
         // Flytt elementer til høyre
         for (int i = a.length - 1; i >= k; i--) {
             a[i] = a[i - k];
         }
 
-        // Legg til elementer fra b
+        // Legg elementer fra b tilbake i a
         System.arraycopy(b, 0, a, 0, k);
     }
 
