@@ -28,6 +28,15 @@ public class ArrayQueue<T> {
         return true;
     }
 
+    public T dequeue() {
+        if (isEmpty()) return null;
+        T value = a[front];
+        a[front] = null;
+        front++;
+        size--;
+        return value;
+    }
+
     @Override
     public String toString() {
         return "ArrayQueue{" +
